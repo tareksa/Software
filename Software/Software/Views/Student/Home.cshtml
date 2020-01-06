@@ -14,9 +14,27 @@
         {
             @Html.AntiForgeryToken()
             <div>
+                <button type="submit">Exam Schedule</button>
+            </div>
+
+        }
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Courses Schedule</button>
+            </div>
+
+        }
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
                 <button type="submit">Logout</button>
             </div>
+
         }
+
     </body>
 
 </html>
