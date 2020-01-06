@@ -21,12 +21,8 @@ namespace Software.Controllers
         }
         public ActionResult One()
         {
-            var students = new List<string>();
-            var aa=mod.User.FirstOrDefault(x => x.Type.Equals(1));
-            if (aa.Type == 1)
-                students.Add(aa.ID.ToString());
 
-                return View();
+                return View(mod.User);
         }
         public ActionResult Two()
         {
