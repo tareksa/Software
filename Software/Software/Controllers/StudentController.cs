@@ -16,6 +16,12 @@ namespace Software.Controllers
         public ActionResult Home()
         {
             return View();
+        }public ActionResult CourseSchedule()
+        {
+            return View("Schedule");
+        }public ActionResult ExamSchedule()
+        {
+            return View("ExamSchedule");
         }
     }
 }

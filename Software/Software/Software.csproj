@@ -188,6 +188,8 @@
     <Content Include="Views\Manager\Four.cshtml" />
     <Content Include="Views\Student\Home.cshtml" />
     <Content Include="Views\Lecturer\Home.cshtml" />
+    <Content Include="Views\Student\Schedule.cshtml" />
+    <Content Include="Views\Student\ExamSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
