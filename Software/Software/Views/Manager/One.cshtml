@@ -1,22 +1,29 @@
-﻿
+﻿@model Software.Models.User
+
 @{
     ViewBag.Title = "Work!!";
 }
-    
+
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>One</title>
-    </head>
-    <body>
-        <h2>One work!!</h2>
-        @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Back</button>
-            </div>
-        }
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>One</title>
+</head>
+<body>
+    <h2>One work!!</h2>
+
+    @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
+    {
+
+        <select id="Select1">
+            <option></option>
+
+        </select>
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
+</body>
 </html>
 
