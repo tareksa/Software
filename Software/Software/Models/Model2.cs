@@ -12,7 +12,9 @@ namespace Software.Models
         {
         }
 
+        public virtual DbSet<GradesTb> GradesTb { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<CourseTb> CourseTb { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

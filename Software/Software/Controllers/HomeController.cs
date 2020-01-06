@@ -40,32 +40,25 @@ namespace Software.Controllers
             var loginUser = mod.User.FirstOrDefault(x => x.ID.Equals(aa.ID));
             if (loginUser != null)
             {
-                if (aa.Password.Equals(loginUser.Password))
+                if(aa.Password==null)
+                    TempData["ErrorMSG"] = "The Password TextBox is recuerd";
+                else if (loginUser.Password.Equals(aa.Password))
                 {
-                    if(loginUser.Type.Equals(1))
-                        return RedirectToAction("Student", "Home");
-                    else if(loginUser.Type==2)
-                        return RedirectToAction("Lecturer", "Home");
-                    else if(loginUser.Type==3)
-                        return RedirectToAction("Manager", "Home");
-                    else return RedirectToAction("Login", "Home");
+                    if (loginUser.Type == 1)
+                        return RedirectToAction("Home", "Student");
+                    else if (loginUser.Type == 2)
+                        return RedirectToAction("Home", "Lecturer");
+                    else
+                        return RedirectToAction("Home", "Manager");
                 }
+                else
+                    TempData["ErrorMSG"] = "Incorrect Password";
 
             }
-            return View("Check");
-        }
-        public ActionResult Student()
-        {
-            return View();
-        }
-        public ActionResult Lecturer()
-        {
-            return View();
-        }
-
-        public ActionResult Manager()
-        {
-            return View();
+            else
+                TempData["ErrorMSG"] = "User not faund";
+                return View("Login");
+            
         }
     }
 }

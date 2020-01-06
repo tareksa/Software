@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Man</title>
+    </head>
+    <body>
+        @using (Html.BeginForm("One", "Manager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">assign student to couse</button>
+            </div>
+        }
+        @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Manage course</button>
+            </div>
+        }
+        @using (Html.BeginForm("Three", "Manager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Manage exam</button>
+            </div>
+        }
+        @using (Html.BeginForm("Four", "Manager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Update grade</button>
+            </div>
+        }
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Logout</button>
+            </div>
+        }
+    </body>
+
+</html>
