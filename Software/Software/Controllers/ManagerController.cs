@@ -21,8 +21,25 @@ namespace Software.Controllers
         }
         public ActionResult One()
         {
+            List<User> users=new List<User>();
+            List<CourseTb> courses = new List<CourseTb>();
+            users.Add(mod.User.FirstOrDefault(x => x.Type.Equals(1)));
+            courses.Add(mod.CourseTb.FirstOrDefault());
+            foreach (User bb in mod.User)
+            {
+                if (bb.Type.Equals( 1))
+                    users.Add(bb);
+            }
+            foreach (CourseTb bb in mod.CourseTb)
+            {
+                    courses.Add(bb);
+            }
+            TempData["temp"] = users;
+            TempData["temp1"] = courses;
 
-                return View(mod.User);
+            ViewBag.MyList1 = TempData["temp"];
+            ViewBag.MyList2 = TempData["temp1"];
+            return View();
         }
         public ActionResult Two()
         {

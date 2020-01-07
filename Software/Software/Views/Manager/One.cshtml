@@ -1,5 +1,5 @@
-﻿@model Software.Models.User
-
+﻿@using Software.Models;
+<!--using software.models.model2; -->
 @{
     ViewBag.Title = "Work!!";
 }
@@ -8,18 +8,27 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>One</title>
+    
 </head>
 <body>
     <h2>One work!!</h2>
 
+    @{ List<User> temp = ViewBag.MyList1; }
+    @{ List<CourseTb> temp1 = ViewBag.MyList2; }
+
+    <select id="Select1"
+            @foreach (User bb in temp) {<option>@bb.ID.ToString()</option>
+          }
+     </select>
+    <br /><br />
+    <select id="Select"
+            @foreach (CourseTb bb in temp1) {<option>@bb.ID.ToString()</option>
+          }
+     </select>
+    <br />
+    <br />
     @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
     {
-
-        <select id="Select1">
-            
-            <option>User.ID.tostring()</option>
-            
-        </select>
         @Html.AntiForgeryToken()
         <div>
             <button type="submit">Back</button>
