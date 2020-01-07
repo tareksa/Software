@@ -3,125 +3,20 @@
     ViewBag.Title = "Schedule";
 }
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Stu</title>
+</head>
+<body>
 
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Logout</button>
+        </div>
+    }
+</body>
 
-<h2>Create</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Recruiter Schedular</legend>
-        <table align="center">
-            <tr>
-                <td>
-                    <div class="form-group">
-                        @Html.Label("Site Name: ", htmlAttributes: new { @class = "control-label col-md-2" })
-                    </div>
-                </td>
-                <td>
-                    <div class="col-md-10">
-
-                        @Html.DropDownList("SiteList", null, htmlAttributes: new { @class = "w250p h30p bdrno" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.recruiterID, "Recruiter Name: ", htmlAttributes: new { @class = "w250p h30p bdrno" })
-                    </div>
-                </td>
-                <td>
-                    <div class="col-md-10">
-
-                        @Html.DropDownList("recruiterID", (IEnumerable<SelectListItem>)ViewBag.recruiterID, "--Select Recruiter--", new { @class = "w250p h30p bdrno" })
-                        @Html.ValidationMessageFor(model => model.recruiterID)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.startDate, "Shift Start Time")
-                    </div>
-                </td>
-
-
-                <td>
-                    @Html.DropDownList("startHoursList", (IEnumerable<SelectListItem>)ViewBag.startHoursList, "HH", new { @class = "w50p h30p bdrno" })
-                    @Html.DropDownList("startMinutesList", (IEnumerable<SelectListItem>)ViewBag.startMinutesList, "MM", new { @class = "w50p h30p bdrno" })
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.endDate, "Shift End Time")
-                    </div>
-
-                </td>
-                <td>
-                    @Html.DropDownList("endHoursList", (IEnumerable<SelectListItem>)ViewBag.endHoursList, "HH", new { @class = "w50p h30p bdrno" })
-                    @Html.DropDownList("endMinutesList", (IEnumerable<SelectListItem>)ViewBag.endMinutesList, "MM", new { @class = "w50p h30p bdrno" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.recurrencePattern, "Pattern")</td>
-                <td>
-                    @Html.DropDownList("recurrencePattern", (IEnumerable<SelectListItem>)ViewBag.Pattern, "--Select Pattern--", new { @class = "w250p h30p bdrno" })
-                    @Html.ValidationMessageFor(model => model.recurrencePattern)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.Label("Selected Dates")
-                    </div>
-                </td>
-                <td>
-                    <div id="celenderForMultiple" class="celender">
-                        <div data-role="calendar" data-week-start="1" data-multi-select="true" id="c1"></div>
-                        <br />
-                        <div class="align-center">
-
-                            <input name="getDates" type="button" value="Create Schedule" onclick="get_dates()" />
-                        </div>
-
-                    </div>
-
-
-                </td>
-            </tr>
-
-            <tr>
-
-                <td colspan="2">
-
-                    <div>
-                        <div id="wrapper"></div>
-                    </div>
-
-                </td>
-
-            </tr>
-        </table>
-
-
-        <p>
-            @*<input type="hidden" id="setdateTime" value="" />*@
-            @Html.Hidden("setStartDateTime")
-            @Html.Hidden("setEndDateTime")
-            @Html.Hidden("shiftStartTime")
-            @Html.Hidden("shiftEndTime")
-            <input type="button" value="Clear Schedule" onclick="cleardateTimeValue();" />
-            <input type="submit" value="Save Schedule" onclick="setdateTimeValue();" />
-        </p>
-
-    </fieldset>
-}
-    <h2>Schedule</h2>
-
+</html>
