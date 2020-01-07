@@ -8,29 +8,33 @@
 
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 </head>
 <body>
+    <p class="inset">An inset border.</p>
     @using (Html.BeginForm("valedate", "Home", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
+        <center>
+            <br /><br /><br /><br /><br /><br />
+            <h1>Login Page</h1>
+            <div>
 
-        <h1>Login Page</h1>
-        <div>
+                @if (TempData["ErrorMSG"] != null)
+                {
+                    <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
+                    <br /><br />
+                }
 
-            @if (TempData["ErrorMSG"] != null)
-            {
-                <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
-                <br /><br />
-            }
-
-            @Html.TextBoxFor(s => s.ID, new { @placeholder = "Username" })
-            <br /> <br />
-            @Html.PasswordFor(x => x.Password, new { @placeholder = "Password" })
-            <br /> <br />
-             <button type="submit">Login</button>
-        </div>
+                @Html.TextBoxFor(s => s.ID, new { @placeholder = "Username" })
+                <br /> <br />
+                @Html.PasswordFor(x => x.Password, new { @placeholder = "Password" })
+                <br /> <br />
+                <button type="submit">Login</button>
+            </div>
+        </center>
     }
 </body>
 </html>

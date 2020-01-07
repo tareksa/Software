@@ -1,7 +1,7 @@
 ﻿
-@{
+@*@{
     ViewBag.Title = "Home";
-}
+}*@
 
 <html>
     <head>
@@ -15,6 +15,20 @@
             @Html.AntiForgeryToken()
             <div>
                 <button type="submit">Logout</button>
+            </div>
+        }
+        @using (Html.BeginForm("CourseSchedule", "Student", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Course Schedule</button>
+            </div>
+        }
+        @using (Html.BeginForm("ExamSchedule", "Student", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Exam Schedule</button>
             </div>
         }
     </body>

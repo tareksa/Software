@@ -13,11 +13,11 @@ namespace Software
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                 name: "defult1",
-                 url: "",
-                 defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
-             );
+            //routes.MapRoute(
+            //     name: "defult1",
+            //     url: "",
+            //     defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+            // );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

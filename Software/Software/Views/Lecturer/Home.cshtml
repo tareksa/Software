@@ -9,7 +9,21 @@
         <title>Lec</title>
     </head>
     <body>
-        
+
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Logout</button>
+            </div>
+        }
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Logout</button>
+            </div>
+        }
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()

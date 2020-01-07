@@ -1,22 +1,33 @@
-﻿
-@{
-    ViewBag.Title = "Schedule";
-}
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Stu</title>
-</head>
-<body>
-
-    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+﻿@model IEnumerable<Software.Models.CourseTb>
+@*@{
+        ViewBag.Title = "Schedule";
+    }*@
+<h2>Course Schedule</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name </th>
+        <th>Points </th>
+        <th>ExamA</th>
+        <th>ExamB</th>
+        <th>Lecturer ID</th>
+        <th>Time</th>
+        <th>Class</th>
+    </tr>
+    @foreach (var d in Model)
     {
-        @Html.AntiForgeryToken()
-        <div>
-            <button type="submit">Logout</button>
-        </div>
-    }
-</body>
+        <tr>
+           
+            <td>@d.ID</td>
+            <td>@d.Name</td>
+            <td>@d.Points</td>
+            <td>@d.ExamA</td>
+            <td>@d.ExamB</td>
+            <td>@d.Lecturer</td>
+            <td>@d.Time</td>
+            <td>@d.Class</td>
 
-</html>
+        </tr>
+
+    }
+</table>

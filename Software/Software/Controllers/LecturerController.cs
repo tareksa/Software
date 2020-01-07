@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Software.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Software.Controllers
 {
     public class LecturerController : Controller
     {
+        private Model2 mod = new Model2();
         // GET: Lecturer
         public ActionResult Index()
         {
@@ -16,6 +18,52 @@ namespace Software.Controllers
         public ActionResult Home()
         {
             return View();
+
+        }
+        public ActionResult lecturerSchedule()
+        {
+            List<GradesTb> Greads = new List<GradesTb>();
+            List<CourseTb> CoursesLi = new List<CourseTb>();
+            string str = Session["myinfo"].ToString();
+            foreach (CourseTb tempData in mod.CourseTb)
+                if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
+                {
+                    //get course details 
+                    //var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(tempData.CourseID));
+                    CoursesLi.Add(tempData);
+                }
+            return View(CoursesLi);
+        }
+        public ActionResult lecturStudents()
+        {
+            List<GradesTb> Greads = new List<GradesTb>();
+            List<CourseTb> CoursesLi = new List<CourseTb>();
+            List<User> StudentsIN = new List<User>();
+            List<string> userid = new List<string>();
+            string str = Session["myinfo"].ToString();
+            foreach (CourseTb tempData in mod.CourseTb)
+                if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
+                    CoursesLi.Add(tempData);
+            
+            foreach (CourseTb tempc in CoursesLi)
+                foreach (GradesTb tempg in mod.GradesTb)
+                    if (tempg.CourseID.Equals(tempc.ID))
+                        userid.Add(tempg.StudentID);
+
+            foreach (User St in mod.User)
+                foreach (string UID in userid)
+                    if (UID.Equals(St.ID.ToString()))
+                        StudentsIN.Add(St);
+            //        StudentsIN.Add(tempData);
+            return View(StudentsIN);
+        }
+        public ActionResult lecturerGreads()
+        {
+            return View();
         }
     }
 }
+
+/*
+
+     */

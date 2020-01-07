@@ -1,7 +1,30 @@
-﻿
-@{
+﻿@model IEnumerable<Software.Models.CourseTb>
+
+@*@{
     ViewBag.Title = "ExamSchedule";
-}
+}*@
 
-<h2>ExamSchedule</h2>
+<h2>Exam Schedule</h2>
 
+
+
+<div><b>Table Format Data Displaying in ForEach</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name </th>
+        <th>ExamA</th>
+        <th>ExamB</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+<tr>
+    <td>@d.ID</td>
+    <td>@d.Name</td>
+    <td>@d.ExamA</td>
+    <td>@d.ExamB</td>
+
+</tr>
+
+    }
+</table>

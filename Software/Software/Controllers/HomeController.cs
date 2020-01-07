@@ -44,6 +44,7 @@ namespace Software.Controllers
                     TempData["ErrorMSG"] = "The Password TextBox is recuerd";
                 else if (loginUser.Password.Equals(aa.Password))
                 {
+                    Session["myinfo"] = loginUser.ID;
                     if (loginUser.Type == 1)
                         return RedirectToAction("Home", "Student");
                     else if (loginUser.Type == 2)

@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Software.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace Software.Controllers
 {
     public class StudentController : Controller
     {
+        private Model2 mod = new Model2();
         // GET: Student
         public ActionResult Index()
         {
@@ -16,12 +19,37 @@ namespace Software.Controllers
         public ActionResult Home()
         {
             return View();
-        }public ActionResult CourseSchedule()
+        }
+
+        public ActionResult CourseSchedule(/*User myinfo*/)
         {
-            return View("Schedule");
-        }public ActionResult ExamSchedule()
+            List<GradesTb> Greads = new List<GradesTb>();
+            List<CourseTb> CoursesLi = new List<CourseTb>();
+            string str = Session["myinfo"].ToString();
+            foreach (GradesTb tempData in mod.GradesTb)
+                if (tempData.StudentID.Equals(Session["myinfo"].ToString()))
+                {
+                    //get course details 
+                    var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(tempData.CourseID));
+                    CoursesLi.Add(courseDetails);
+                }
+
+            return View("Schedule", CoursesLi);
+        }
+        public ActionResult ExamSchedule()
         {
-            return View("ExamSchedule");
+            List<GradesTb> Greads = new List<GradesTb>();
+            List<CourseTb> CoursesLi = new List<CourseTb>();
+            string str = Session["myinfo"].ToString();
+            foreach (GradesTb tempData in mod.GradesTb)
+                if (tempData.StudentID.Equals(Session["myinfo"].ToString()))
+                {
+                    //get course details 
+                    var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(tempData.CourseID));
+                    CoursesLi.Add(courseDetails);
+                }
+
+            return View("ExamSchedule", CoursesLi);
         }
     }
 }
