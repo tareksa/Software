@@ -190,6 +190,8 @@
     <Content Include="Views\Lecturer\Home.cshtml" />
     <Content Include="Views\Student\Schedule.cshtml" />
     <Content Include="Views\Student\ExamSchedule.cshtml" />
+    <Content Include="Views\Manager\CheckOne.cshtml" />
+    <Content Include="Views\Manager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

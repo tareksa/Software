@@ -1,22 +1,160 @@
-﻿
-@{
-    ViewBag.Title = "Two";
-}
+﻿@model IEnumerable< Software.Models.CourseTb>
 
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Two</title>
-    </head>
-    <body>
-        <h2>work!!</h2>
-        @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Edit Course</h2>
+
+    <table>
+
+        <tr>
+
+            <th></th>
+
+            <th>
+
+                Id
+
+            </th>
+
+            <th>
+
+                Name
+
+            </th>
+
+            <th>
+
+                Point
+
+            </th>
+
+            <th>
+
+                ExamA
+
+            </th>
+            <th>
+
+                ExamB
+
+            </th>
+            <th>
+
+                Lecturer
+
+            </th>
+            <th>
+
+                Time
+
+            </th>
+            <th>
+
+                Day
+
+            </th>
+            <th>
+
+                Class
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
         {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Back</button>
-            </div>
+
+            <tr>
+
+                <td>
+
+                    @Html.ActionLink("Edit", "Edit", new { ID =item.ID })
+                </td>
+
+                <td>
+
+                    @Html.Encode(item.ID)
+
+                </td>
+
+                <td>
+
+                    @Html.Encode(item.Name)
+
+                </td>
+
+                <td>
+
+                    @Html.Encode(item.Points)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.ExamA)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.ExamB)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.Lecturer)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.Time)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.Day)
+
+                </td>
+                <td>
+
+                    @Html.Encode(item.Class)
+
+                </td>
+
+            </tr>
+
         }
-    </body>
-    </html>
+
+    </table>
+
+    <p>
+
+        @Html.ActionLink("Create New", "Create")
+
+    </p>
+
+    @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
+
+</asp:Content>
+
+
+<!--<html>
+
+<body>
+
+    <h2>work!!</h2>
+    -->
+
+
+
 

@@ -1,0 +1,82 @@
+﻿@model Software.Models.CourseTb
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<html>
+
+<body>
+    @using (Html.BeginForm("CheckEdit", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        if (TempData["temp1"] != null)
+        {
+            <label style="color:maroon;"> @TempData["temp1"] </label>
+            <br /><br />
+        }
+
+        @Html.TextBoxFor(x => x.Name, new { @placeholder = "Course Name" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.Points, new { @placeholder = "Course Points" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.ExamA, new { @placeholder = "ExamA date" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.ExamB, new { @placeholder = "ExamB date" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.Lecturer, new { @placeholder = "Lecturer ID" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.Time, new { @placeholder = "Course Time" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.Day, new { @placeholder = "Course Day" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+        @Html.TextBoxFor(x => x.Class, new { @placeholder = "Course Room" })
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+
+        <br /><br />
+    }
+
+    @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
+
+
+</body>
+</html>
