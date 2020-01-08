@@ -1,50 +1,45 @@
-﻿@model Software.Models.GradesTb
+﻿@model IEnumerable<Software.Models.GradesTb>
 
 
 
-@{
-    ViewBag.Title = "Three";
-}
 
-<html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Three</title>
 </head>
-<body>
-    <h2>work!!</h2>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h2>Edit Course</h2>
 
-    @using (Html.BeginForm("CheckThree", "Manager", FormMethod.Post))
-    {
+    <table class="table table-bordered table-responsive table-hover">
 
+        <tr>
 
-        @Html.AntiForgeryToken()
+            <th></th>
+            <th>Student ID</th>
+            <th>Lecturer ID</th>
+            <th>Exam A gread</th>
+            <th>Exam B gread</th>
+        </tr>
 
-        if (TempData["temp1"] != null)
+        @foreach (var item in Model)
         {
-            <label style="color:maroon;"> @TempData["temp1"] </label>
-            <br /><br />
+            //@Html.HiddenFor(model=>item)
+            <tr>
+                @*<td>
+                        <a href="/Lecturer/lecturerEdit?StudentGrades=@item">Edit</a>
+                    </td>*@
+                <td> @Html.ActionLink("Edit", "EditThree", new { StudentID = item.StudentID, CourseID = item.CourseID })</td>
+                <td>@Html.Encode(item.StudentID)</td>
+                <td>@Html.Encode(item.CourseID)</td>
+                <td>@Html.Encode(item.GradeA)</td>
+                <td>@Html.Encode(item.GradeB)</td>
+            </tr>
         }
 
-        @Html.TextBoxFor(a => a.StudentID, new { @placeholder = "StudentID" })
+    </table>
 
-        <br /><br />
-        @Html.TextBoxFor(x => x.CourseID, new { @placeholder = "CourseID" })
-        <br /><br />
 
-        @Html.TextBoxFor(x => x.GradeA, new { @placeholder = "Moad A" })
-        <br /><br />
-
-        @Html.TextBoxFor(x => x.GradeA, new { @placeholder = "Moad A" })
-
-        <div>
-            <button type="submit">Edit</button>
-        </div>
-
-        <br /><br />
-    }
     @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
@@ -52,6 +47,7 @@
             <button type="submit">Back</button>
         </div>
     }
-</body>
-</html>
+
+</asp:Content>
+
 

@@ -25,21 +25,35 @@ namespace Software.Controllers
         {
             List<GradesTb> Greads = new List<GradesTb>();
             List<CourseTb> CoursesLi = new List<CourseTb>();
+            if (Session["myinfo"] == null)
+            {
+                Session["lool"] = "Fuck Saher";
+                return RedirectToAction("Login", "Home", Session["lool"]);
+            }
             string str = Session["myinfo"].ToString();
+            bool chek = false;
             foreach (GradesTb tempData in mod.GradesTb)
+            {
+
                 if (tempData.StudentID.Equals(Session["myinfo"].ToString()))
                 {
                     //get course details 
                     var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(tempData.CourseID));
                     CoursesLi.Add(courseDetails);
                 }
-
+            }
+                    
             return View("Schedule", CoursesLi);
         }
         public ActionResult ExamSchedule()
         {
             List<GradesTb> Greads = new List<GradesTb>();
             List<CourseTb> CoursesLi = new List<CourseTb>();
+            if (Session["myinfo"] == null)
+            {
+                Session["lool"] = "Fuck Saher";
+                return RedirectToAction("Login", "Home", Session["lool"]);
+            }
             string str = Session["myinfo"].ToString();
             foreach (GradesTb tempData in mod.GradesTb)
                 if (tempData.StudentID.Equals(Session["myinfo"].ToString()))

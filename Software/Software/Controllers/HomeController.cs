@@ -33,8 +33,11 @@ namespace Software.Controllers
         }
         public ActionResult Login(string msg) 
         {
-            if(!string.IsNullOrEmpty(msg))
+            if (Session["lool"] != null)
+                TempData["ErrorMSG"] = Session["lool"];
+            else if (!string.IsNullOrEmpty(msg))
                 TempData["ErrorMSG"] = msg;
+
             return View();
         }
         public ActionResult valedate(User aa) 

@@ -1,21 +1,50 @@
-﻿
-@{
-    ViewBag.Title = "Four";
-}
+﻿@model Software.Models.GradesTb
+@*@model IEnumerable<Software.Models.GradesTb>*@
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
 
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Four</title>
-    </head>
-    <body>
-        <h2>work!!</h2>
-        @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Edit Course</h2>
+    @using (Html.BeginForm("chkEdit", "Lecturer", FormMethod.Post))
+    {
+        <table class="table table-bordered table-responsive table-hover">
+
+            <tr>
+                <th>Student ID</th>
+                <th>Course ID</th>
+                <th>Exam A gread</th>
+                <th>Exam B gread</th>
+            </tr>
+
+            <tr>
+                <td>@Html.EditorFor(modle => modle.StudentID, new { @class = "stuId" })</td>
+                <td>@Html.EditorFor(modle => modle.CourseID, new { @class = "CourseID" })</td>
+                <td>@Html.EditorFor(modle => modle.GradeA, new { @class = "GreadA" })</td>
+                <td>@Html.EditorFor(modle => modle.GradeB, new { @class = "GreadB" })</td>
+            </tr>
+
+        </table>
+
+        <div>
+
+            <button type="submit">Edit</button>
+        </div>
+        if (TempData["errormsg"] != null)
         {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Back</button>
-            </div>
+            <label style="color:maroon;"> @TempData["errormsg"] </label>
+            <br />
+            <br />
         }
-    </body>
-    </html>
+        if (TempData["confirmmsg"] != null)
+        {
+            <label style="color:darkgreen;"> @TempData["confirmmsg"] </label>
+            <br />
+            <br />
+        }
+    }
+
+</asp:Content>
+
+

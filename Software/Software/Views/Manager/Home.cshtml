@@ -9,12 +9,15 @@
         <title>Man</title>
     </head>
     <body>
+        <p class="inset">An inset border.</p>
         @using (Html.BeginForm("One", "Manager", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
+            <br /><br /><br />
             <div>
                 <button type="submit">assign student to couse</button>
             </div>
+            <br /><br />
         }
         @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
         {
@@ -22,6 +25,7 @@
             <div>
                 <button type="submit">Manage course</button>
             </div>
+            <br /><br />
         }
         @using (Html.BeginForm("Three", "Manager", FormMethod.Post))
         {
@@ -29,6 +33,7 @@
             <div>
                 <button type="submit">Update grade</button>
             </div>
+            <br /><br />
         }
 
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
@@ -37,6 +42,7 @@
             <div>
                 <button type="submit">Logout</button>
             </div>
+            <br /><br />
         }
     </body>
 

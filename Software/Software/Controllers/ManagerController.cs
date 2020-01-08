@@ -185,7 +185,43 @@ namespace Software.Controllers
         public ActionResult CheckThree()
         {
 
-            return View("Three");
+            return View("Three",mod.GradesTb);
         }
+        public ActionResult EditThree(GradesTb user)
+        {
+
+            GradesTb Greaddddd = new GradesTb();
+            if (user == null)
+                TempData["errormsg"] = "ERROR! Fill in again ";
+            if (user.StudentID == null)
+                TempData["errormsg"] = "Fill in StudentID ";
+            if (user.CourseID == null)
+                TempData["errormsg"] = "Fill in CourseID ";
+            if (user.GradeA != null)
+                if (!(user.GradeA <= 100 && user.GradeA >= 0))
+                    TempData["errormsg"] = "Gread A, must be in range [0,100]";
+            if (user.GradeB != null)
+                if (!(user.GradeB <= 100 && user.GradeB >= 0))
+                    TempData["errormsg"] = "Gread B, must be in range [0,100]";
+            List<GradesTb> Gread = new List<GradesTb>();
+            foreach (GradesTb tempg in mod.GradesTb)
+                if (tempg.StudentID.Equals(user.StudentID))
+                    if (tempg.CourseID.Equals(user.CourseID))
+                    { Greaddddd = tempg; Gread.Add(tempg); Gread.Add(user); break; }
+            if (Greaddddd == null || Greaddddd == null || Greaddddd.CourseID == null || Greaddddd.StudentID == null)
+                TempData["errormsg"] = "Course/Student not found ";
+            else
+            {
+                mod.GradesTb.Remove(Greaddddd);
+                mod.GradesTb.Add(user);
+                //mod.SaveChanges();
+                TempData["confirmmsg"] = "Updated ";
+            }
+
+
+            //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
+            return View("Four");
+        }
+
     }
 }
