@@ -98,17 +98,25 @@ namespace Software.Controllers
         {
             return View(mod.CourseTb);
         }
-        public ActionResult Edit(string UserID)
+        public ActionResult Edit(CourseTb couID)
         {
-            Session["User"] = UserID;
+            Session["User"] = couID.ID;
             return View();
         }
         public ActionResult CheckEdit(CourseTb temp)
         {
+            var stam = Session["User"];
 
-            var cou = mod.CourseTb.Find(Session["User"]);
+            CourseTb cou = new CourseTb();
+            foreach (CourseTb sd in mod.CourseTb)
+            {
+                if (stam.Equals(sd.ID))
+                {
+                    cou = sd;
+                }
+            }
 
- 
+
 
             if (temp.Name != null)
             {
@@ -168,7 +176,7 @@ namespace Software.Controllers
             }
 
 
-            return View();
+            return View("Edit");
         }
     }
 }
