@@ -190,6 +190,7 @@
     <Content Include="Views\Lecturer\lecturerSchedule.cshtml" />
     <Content Include="Views\Lecturer\lecturerEdit.cshtml" />
     <Content Include="web.config" />
+    <Content Include="Views\Lecturer\lecturCourses.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

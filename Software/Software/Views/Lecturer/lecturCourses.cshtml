@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Software.Models.CourseTb>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>My Courses</</h2>
+
+    <table class="table table-bordered table-responsive table-hover">
+
+        <tr>
+
+            <th>Students</th>
+            <th>ID</th>
+            <th>Lecturer Name</th>
+            <th>Time</th>
+            <th>Day</th>
+            <th>Class</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            //@Html.HiddenFor(model=>item)
+            <tr>
+                @*<td>
+                        <a href="/Lecturer/lecturerEdit?StudentGrades=@item">Edit</a>
+                    </td>*@
+                <td> @Html.ActionLink("View", "lecturStudents", new {  CourseID = item.ID })</td>
+                <td>@Html.Encode(item.ID)</td>
+                <td>@Html.Encode(item.Name)</td>
+                <td>@Html.Encode(item.Time)</td>
+                <td>@Html.Encode(item.Day)</td>
+                <td>@Html.Encode(item.Class)</td>
+            </tr>
+        }
+
+    </table>
+
+    
+
+    @using (Html.BeginForm("Home", "Lecturer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
+
+</asp:Content>
+
+
+

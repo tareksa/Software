@@ -17,11 +17,11 @@
                 <button type="submit">My Schedule</button>
             </div>
         }
-        @using (Html.BeginForm("lecturStudents", "Lecturer", FormMethod.Post))
+        @using (Html.BeginForm("lecturCourses", "Lecturer", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div>
-                <button type="submit">My Students</button>
+                <button type="submit">My Courses</button>
             </div>
         }
         @using (Html.BeginForm("lecturerGreads", "Lecturer", FormMethod.Post))

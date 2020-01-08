@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Software.Models.CourseTb>
 
 @*@{
-    ViewBag.Title = "ExamSchedule";
-}*@
+        ViewBag.Title = "ExamSchedule";
+    }*@
 
 <h2>Exam Schedule</h2>
 
@@ -18,13 +18,13 @@
     </tr>
     @foreach (var d in Model)
     {
-<tr>
-    <td>@d.ID</td>
-    <td>@d.Name</td>
-    <td>@d.ExamA</td>
-    <td>@d.ExamB</td>
+        <tr>
+            <td>@d.ID</td>
+            <td>@d.Name</td>
+            <td>@d.ExamA</td>
+            <td>@d.ExamB</td>
 
-</tr>
+        </tr>
 
     }
 </table>

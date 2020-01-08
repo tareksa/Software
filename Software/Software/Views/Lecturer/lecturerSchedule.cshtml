@@ -1,7 +1,38 @@
-﻿
-@{
-    ViewBag.Title = "lecturerSchedule";
+﻿@model IEnumerable<Software.Models.CourseTb>
+
+<h2>Your Schedule</h2>
+
+
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Course Name</th>
+        <th>points </th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Class</th>
+        <th>Exam A</th>
+        <th>Exam B</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.Name</td>
+            <td>@d.Points</td>
+            <td>@d.Day</td>
+            <td>@d.Time</td>
+            <td>@d.Class</td>
+            <td>@d.ExamA</td>
+            <td>@d.ExamB</td>
+
+        </tr>
+
+    }
+</table>
+@using (Html.BeginForm("Home", "Lecturer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <button type="submit">Back</button>
+    </div>
 }
-
-<h2>lecturerSchedule</h2>
-
