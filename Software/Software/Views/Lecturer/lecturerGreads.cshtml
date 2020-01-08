@@ -1,7 +1,50 @@
-﻿
-@{
-    ViewBag.Title = "lecturerGreads";
-}
+﻿@model IEnumerable<Software.Models.GradesTb>
 
-<h2>lecturerGreads</h2>
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Edit Course</h2>
+
+    <table class="table table-bordered table-responsive table-hover">
+
+        <tr>
+
+            <th></th>
+            <th>Student ID</th>
+            <th>Lecturer ID</th>
+            <th>Exam A gread</th>
+            <th>Exam B gread</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.ActionLink("Edit", "lecturerEdit", new { StudentGrades = item})</td>
+                <td>@Html.Encode(item.StudentID)</td>
+                <td>@Html.Encode(item.CourseID)</td>
+                <td>@Html.Encode(item.GradeA)</td>
+                <td>@Html.Encode(item.GradeB)</td>
+            </tr>
+        }
+
+    </table>
+
+    <p>@Html.ActionLink("Create New", "Create")</p>
+
+    @using (Html.BeginForm("Home", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
+
+</asp:Content>
+
 

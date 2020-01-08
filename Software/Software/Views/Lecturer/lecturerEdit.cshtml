@@ -1,0 +1,36 @@
+﻿@model Software.Models.GradesTb
+@*@model IEnumerable<Software.Models.GradesTb>*@
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Edit Course</h2>
+    @using (Html.BeginForm("CheckEdit", "Manager", FormMethod.Post))
+    {
+        <table class="table table-bordered table-responsive table-hover">
+
+            <tr>
+                <th>Student ID</th>
+                <th>Lecturer ID</th>
+                <th>Exam A gread</th>
+                <th>Exam B gread</th>
+            </tr>
+
+            <tr>
+                <td>@Html.EditorFor(modle => modle.StudentID, new { @class = "stuId" })</td>
+                <td>@Html.EditorFor(modle => modle.CourseID, new { @class = "CourseID" })</td>
+                <td>@Html.EditorFor(modle => modle.GradeA, new { @class = "GreadA" })</td>
+                <td>@Html.EditorFor(modle => modle.GradeB, new { @class = "GreadB" })</td>
+            </tr>
+
+        </table>
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+    }
+
+</asp:Content>
+
+
