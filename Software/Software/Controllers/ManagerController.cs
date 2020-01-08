@@ -13,18 +13,38 @@ namespace Software.Controllers
         private Model2 mod = new Model2();
         public ActionResult Index()
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View();
         }
         public ActionResult Home()
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View();
         }
         public ActionResult One()
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View();
         }
         public ActionResult CheckOne(User aa)
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             bool ch=false;
             foreach (User temp in mod.User)
             {
@@ -96,15 +116,30 @@ namespace Software.Controllers
         }
         public ActionResult Two()
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View(mod.CourseTb);
         }
         public ActionResult Edit(CourseTb couID)
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             Session["User"] = couID.ID;
             return View();
         }
         public ActionResult CheckEdit(CourseTb temp)
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             var stam = Session["User"];
 
             CourseTb cou = new CourseTb();
@@ -180,16 +215,29 @@ namespace Software.Controllers
         }
         public ActionResult Three()
         {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View(mod.GradesTb);
         }
         public ActionResult CheckThree()
         {
-
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             return View("Three",mod.GradesTb);
         }
         public ActionResult EditThree(GradesTb user)
         {
-
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol= "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
             GradesTb Greaddddd = new GradesTb();
             if (user == null)
                 TempData["errormsg"] = "ERROR! Fill in again ";
@@ -221,6 +269,60 @@ namespace Software.Controllers
 
             //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
             return View("Four");
+        }
+        public ActionResult Create()
+        {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
+            return View("CheckOne");
+        }
+        public ActionResult CheckCreate(CourseTb temp)
+        {
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
+            }
+            if (temp.ID == null)
+            {
+                TempData["errormsg"] = "You must enter ID";
+                return View("CheckOne");
+            }
+            foreach(CourseTb stam in mod.CourseTb)
+            {
+                if(stam.ID==temp.ID)
+                {
+                    TempData["errormsg"] = "ID Exist";
+                    return View("CheckOne");
+                }
+            }
+            if(temp.Name==null)
+                TempData["errormsg"] = "You must enter Name";
+            else if (temp.Points == null)
+                TempData["errormsg"] = "You must enter Points";
+            else if (temp.Time == null)
+                TempData["errormsg"] = "You must enter Time";
+            else if (temp.ExamA == null)
+                TempData["errormsg"] = "You must enter ExamA";
+            else if (temp.ExamB == null)
+                TempData["errormsg"] = "You must enter ExamB";
+            else if (temp.Day == null)
+                TempData["errormsg"] = "You must enter Day";
+            else if (temp.Class == null)
+                TempData["errormsg"] = "You must enter Class";
+            else
+            {
+                mod.CourseTb.Add(temp);
+                mod.SaveChanges();
+                TempData["confirmmsg"] = "Updated ";
+
+            }
+
+
+            return View("CheckOne");
         }
 
     }

@@ -33,8 +33,8 @@ namespace Software.Controllers
         }
         public ActionResult Login(string msg) 
         {
-            if (Session["lool"] != null)
-                TempData["ErrorMSG"] = Session["lool"];
+            if (ViewBag.lol != null)
+                TempData["ErrorMSG"] = ViewBag.lol;
             else if (!string.IsNullOrEmpty(msg))
                 TempData["ErrorMSG"] = msg;
 

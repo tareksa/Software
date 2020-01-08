@@ -27,8 +27,8 @@ namespace Software.Controllers
             List<CourseTb> CoursesLi = new List<CourseTb>();
             if (Session["myinfo"] == null)
             {
-                Session["lool"] = "Fuck Saher";
-                return RedirectToAction("Login", "Home", Session["lool"]);
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
             }
             string str = Session["myinfo"].ToString();
             bool chek = false;
@@ -51,8 +51,8 @@ namespace Software.Controllers
             List<CourseTb> CoursesLi = new List<CourseTb>();
             if (Session["myinfo"] == null)
             {
-                Session["lool"] = "Fuck Saher";
-                return RedirectToAction("Login", "Home", Session["lool"]);
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", ViewBag.lol);
             }
             string str = Session["myinfo"].ToString();
             foreach (GradesTb tempData in mod.GradesTb)

@@ -1,7 +1,70 @@
-﻿
-@{
-    ViewBag.Title = "CheckOne";
-}
+﻿@model Software.Models.CourseTb
+@*@model IEnumerable<Software.Models.GradesTb>*@
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
 
-<h2>CheckOne</h2>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h2>Edit Course</h2>
+    @using (Html.BeginForm("CheckCreate", "Manager", FormMethod.Post))
+    {
+        <table class="table table-bordered table-responsive table-hover">
+
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Course Point</th>
+                <th>Course ExamA</th>
+                <th>Course ExamB</th>
+                <th>Course Lecturer</th>
+                <th>Course Time</th>
+                <th>Course Day</th>
+                <th>Course Class</th>
+            </tr>
+
+            <tr>
+                <td>@Html.EditorFor(modle => modle.ID, new { @class = "ID" })</td>
+                <td>@Html.EditorFor(modle => modle.Name, new { @class = "Name" })</td>
+                <td>@Html.EditorFor(modle => modle.Points, new { @class = "Points" })</td>
+                <td>@Html.EditorFor(modle => modle.ExamA, new { @class = "ExamA" })</td>
+                <td>@Html.EditorFor(modle => modle.ExamB, new { @class = "ExamB" })</td>
+                <td>@Html.EditorFor(modle => modle.Lecturer, new { @class = "Lecturer" })</td>
+                <td>@Html.EditorFor(modle => modle.Time, new { @class = "Time" })</td>
+                <td>@Html.EditorFor(modle => modle.Day, new { @class = "Day" })</td>
+                <td>@Html.EditorFor(modle => modle.Class, new { @class = "Class" })</td>
+
+
+
+            </tr>
+            <div>
+
+                <button type="submit">Add</button>
+                <br />
+            </div>
+
+        </table>
+
+        if (TempData["errormsg"] != null)
+        {
+            <label style="color:maroon;"> @TempData["errormsg"] </label>
+            <br />
+            <br />
+        }
+        if (TempData["confirmmsg"] != null)
+        {
+            <label style="color:darkgreen;"> @TempData["confirmmsg"] </label>
+            <br />
+            <br />
+        }
+
+    }
+        @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Back</button>
+            </div>
+        }
+
+</asp:Content>
