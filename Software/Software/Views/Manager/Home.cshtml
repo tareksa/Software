@@ -27,16 +27,10 @@
         {
             @Html.AntiForgeryToken()
             <div>
-                <button type="submit">Manage exam</button>
-            </div>
-        }
-        @using (Html.BeginForm("Four", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
                 <button type="submit">Update grade</button>
             </div>
         }
+
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()

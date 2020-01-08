@@ -123,60 +123,69 @@ namespace Software.Controllers
                 mod.CourseTb.Remove(cou);
                 cou.Name = temp.Name;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
             else if (temp.Points != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.Points = temp.Points;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
             else if (temp.ExamA != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.ExamA = temp.ExamA;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+               // mod.SaveChanges();
             }
             else if (temp.ExamB != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.ExamB = temp.ExamB;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
             else if (temp.Lecturer != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.Lecturer = temp.Lecturer;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
             else if (temp.Time != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.Time = temp.Time;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
             else if (temp.Day != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.Day = temp.Day;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+               // mod.SaveChanges();
             }
             else if (temp.Class != null)
             {
                 mod.CourseTb.Remove(cou);
                 cou.Class = temp.Class;
                 mod.CourseTb.Add(cou);
-                mod.SaveChanges();
+                //mod.SaveChanges();
             }
 
 
             return View("Edit");
+        }
+        public ActionResult Three()
+        {
+            return View(mod.GradesTb);
+        }
+        public ActionResult CheckThree()
+        {
+
+            return View("Three");
         }
     }
 }
