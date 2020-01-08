@@ -44,7 +44,13 @@
             <br />
         }
     }
-
+    @using (Html.BeginForm("lecturerGreads", "Lecturer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
 </asp:Content>
 
 

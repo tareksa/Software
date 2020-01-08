@@ -1,7 +1,35 @@
-﻿
-@{
-    ViewBag.Title = "lecturStudents";
-}
+﻿@model IEnumerable<Software.Models.User>
 
-<h2>lecturStudents</h2>
+<h2>Your Students</h2>
+
+
+
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Full Name </th>
+        <th>Birthday</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+    @foreach (var d in Model)
+    {
+        <tr>
+            <td>@d.ID</td>
+            <td>@d.Fname @d.Lname</td>
+            <td>@d.Birthday</td>
+            <td>@d.Email</td>
+            <td>@d.Phone</td>
+
+        </tr>
+
+    }
+</table>
+@using (Html.BeginForm("Home", "Lecturer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <button type="submit">Back</button>
+    </div>
+}
 

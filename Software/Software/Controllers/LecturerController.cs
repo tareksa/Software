@@ -41,7 +41,27 @@ namespace Software.Controllers
                 }
             return View(CoursesLi);
         }
-        public ActionResult lecturStudents()
+        public ActionResult lecturStudents(string CourseID)
+        {
+            List<User> StudentsIN = new List<User>();
+            List<string> userid = new List<string>();
+            chekSession(Session["myinfo"]);
+            string str = Session["myinfo"].ToString();
+         
+            //return a list of student's for every lecturer's courses
+                foreach (GradesTb tempg in mod.GradesTb)
+                    if (tempg.CourseID.Equals(CourseID))
+                        userid.Add(tempg.StudentID);
+
+            //return a list of student Data for every lecturer's courses
+            //foreach (User St in mod.User)
+                foreach (string UID in userid)
+               //     if (UID.Equals(St.ID.ToString()))
+                        StudentsIN.Add(mod.User.FirstOrDefault(x => x.ID.ToString().Equals(UID)));
+            //        StudentsIN.Add(tempData);
+            return View(StudentsIN);
+        }
+        public ActionResult lecturCourses()
         {
             List<GradesTb> Greads = new List<GradesTb>();
             List<CourseTb> CoursesLi = new List<CourseTb>();
@@ -54,19 +74,7 @@ namespace Software.Controllers
                 if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
                     CoursesLi.Add(tempData);
 
-            //return a list of student's for every lecturer's courses
-            foreach (CourseTb tempc in CoursesLi)
-                foreach (GradesTb tempg in mod.GradesTb)
-                    if (tempg.CourseID.Equals(tempc.ID))
-                        userid.Add(tempg.StudentID);
-
-            //return a list of student Data for every lecturer's courses
-            foreach (User St in mod.User)
-                foreach (string UID in userid)
-                    if (UID.Equals(St.ID.ToString()))
-                        StudentsIN.Add(St);
-            //        StudentsIN.Add(tempData);
-            return View(StudentsIN);
+            return View(CoursesLi);
         }
         public ActionResult lecturerGreads()
         {
@@ -136,19 +144,7 @@ namespace Software.Controllers
                 //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
                 return View("lecturerEdit");
         }
-        public ActionResult EditGread(List<GradesTb> newStudent)
-        {
-            
-            mod.GradesTb.Remove(newStudent[1]);
-            mod.GradesTb.Add(newStudent[0]);
-            mod.SaveChanges();
-
-
-            return View();
-        }
+       
     }
 }
 
-/*
-
-     */
