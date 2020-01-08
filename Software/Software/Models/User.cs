@@ -10,6 +10,7 @@ namespace Software.Models
     public partial class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public int ID { get; set; }
 
         [Required]
@@ -19,6 +20,7 @@ namespace Software.Models
         public string Lname { get; set; }
 
         [Column(TypeName = "date")]
+
         public DateTime Birthday { get; set; }
 
         [Required]
