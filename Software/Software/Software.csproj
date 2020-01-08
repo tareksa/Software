@@ -192,6 +192,9 @@
     <Content Include="Views\Student\ExamSchedule.cshtml" />
     <Content Include="Views\Manager\CheckOne.cshtml" />
     <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Lecturer\lecturerGreads.cshtml" />
+    <Content Include="Views\Lecturer\lecturStudents.cshtml" />
+    <Content Include="Views\Lecturer\lecturerSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
