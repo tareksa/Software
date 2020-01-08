@@ -41,15 +41,18 @@ namespace Software.Controllers
             List<User> StudentsIN = new List<User>();
             List<string> userid = new List<string>();
             string str = Session["myinfo"].ToString();
+            //return a list of lecturer courses
             foreach (CourseTb tempData in mod.CourseTb)
                 if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
                     CoursesLi.Add(tempData);
-            
+
+            //return a list of student's for every lecturer's courses
             foreach (CourseTb tempc in CoursesLi)
                 foreach (GradesTb tempg in mod.GradesTb)
                     if (tempg.CourseID.Equals(tempc.ID))
                         userid.Add(tempg.StudentID);
 
+            //return a list of student Data for every lecturer's courses
             foreach (User St in mod.User)
                 foreach (string UID in userid)
                     if (UID.Equals(St.ID.ToString()))
@@ -59,8 +62,28 @@ namespace Software.Controllers
         }
         public ActionResult lecturerGreads()
         {
-            return View();
+
+            List<GradesTb> Greads = new List<GradesTb>();
+            List<CourseTb> CoursesLi = new List<CourseTb>();
+            
+            //return a list of lecturer courses
+            foreach (CourseTb tempData in mod.CourseTb)
+                if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
+                    CoursesLi.Add(tempData);
+
+            //return a list of student's for every lecturer's courses
+            foreach (CourseTb tempc in CoursesLi)
+                foreach (GradesTb tempg in mod.GradesTb)
+                    if (tempg.CourseID.Equals(tempc.ID))
+                        Greads.Add(tempg);
+
+            return View(Greads);
         }
+        public ActionResult lecturerEdit(GradesTb Greads )
+        {
+            return View(Greads);
+        }
+        
     }
 }
 
