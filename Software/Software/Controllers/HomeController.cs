@@ -31,8 +31,10 @@ namespace Software.Controllers
 
             return View();
         }
-        public ActionResult Login() 
+        public ActionResult Login(string msg) 
         {
+            if(!string.IsNullOrEmpty(msg))
+                TempData["ErrorMSG"] = msg;
             return View();
         }
         public ActionResult valedate(User aa) 

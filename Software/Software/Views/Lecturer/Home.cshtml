@@ -10,18 +10,25 @@
     </head>
     <body>
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        @using (Html.BeginForm("lecturerSchedule", "Lecturer", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div>
-                <button type="submit">Logout</button>
+                <button type="submit">My Schedule</button>
             </div>
         }
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        @using (Html.BeginForm("lecturStudents", "Lecturer", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div>
-                <button type="submit">Logout</button>
+                <button type="submit">My Students</button>
+            </div>
+        }
+        @using (Html.BeginForm("lecturerGreads", "Lecturer", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Student's Greads</button>
             </div>
         }
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))

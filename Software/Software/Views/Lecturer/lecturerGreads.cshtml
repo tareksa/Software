@@ -24,8 +24,12 @@
 
         @foreach (var item in Model)
         {
+            //@Html.HiddenFor(model=>item)
             <tr>
-                <td> @Html.ActionLink("Edit", "lecturerEdit", new { StudentGrades = item})</td>
+                @*<td>
+                    <a href="/Lecturer/lecturerEdit?StudentGrades=@item">Edit</a>
+                </td>*@
+                <td> @Html.ActionLink("Edit", "lecturerEdit", new { StudentID = item.StudentID,CourseID=item.CourseID})</td>
                 <td>@Html.Encode(item.StudentID)</td>
                 <td>@Html.Encode(item.CourseID)</td>
                 <td>@Html.Encode(item.GradeA)</td>

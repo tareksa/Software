@@ -7,13 +7,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Edit Course</h2>
-    @using (Html.BeginForm("CheckEdit", "Manager", FormMethod.Post))
+    @using (Html.BeginForm("chkEdit", "Lecturer", FormMethod.Post))
     {
         <table class="table table-bordered table-responsive table-hover">
 
             <tr>
                 <th>Student ID</th>
-                <th>Lecturer ID</th>
+                <th>Course ID</th>
                 <th>Exam A gread</th>
                 <th>Exam B gread</th>
             </tr>
@@ -26,9 +26,23 @@
             </tr>
 
         </table>
+
         <div>
+
             <button type="submit">Edit</button>
         </div>
+        if (TempData["errormsg"] != null)
+        {
+            <label style="color:maroon;"> @TempData["errormsg"] </label>
+            <br />
+            <br />
+        }
+        if (TempData["confirmmsg"] != null)
+        {
+            <label style="color:darkgreen;"> @TempData["confirmmsg"] </label>
+            <br />
+            <br />
+        }
     }
 
 </asp:Content>
