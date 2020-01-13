@@ -59,12 +59,12 @@
         }
 
     }
-        @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Back</button>
-            </div>
-        }
+    @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }
 
 </asp:Content>

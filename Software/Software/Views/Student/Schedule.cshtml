@@ -17,7 +17,7 @@
     @foreach (var d in Model)
     {
         <tr>
-           
+
             <td>@d.ID</td>
             <td>@d.Name</td>
             <td>@d.Points</td>
@@ -31,3 +31,10 @@
 
     }
 </table>
+    @using (Html.BeginForm("Home", "Student", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }

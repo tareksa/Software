@@ -28,3 +28,10 @@
 
     }
 </table>
+    @using (Html.BeginForm("Home", "Student", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Back</button>
+        </div>
+    }

@@ -16,7 +16,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View();
         }
@@ -25,7 +25,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View();
         }
@@ -34,7 +34,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View();
         }
@@ -43,9 +43,9 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
-            bool ch=false;
+            bool ch = false;
             foreach (User temp in mod.User)
             {
                 if (aa.ID == temp.ID && temp.Type.Equals(1))
@@ -72,7 +72,7 @@ namespace Software.Controllers
                 return View("One");
             }
 
-            foreach (GradesTb temp in mod.GradesTb) 
+            foreach (GradesTb temp in mod.GradesTb)
             {
                 if (aa.ID.ToString() == temp.StudentID && aa.Lname == temp.CourseID)
                 {
@@ -88,7 +88,7 @@ namespace Software.Controllers
                     return View("One");
                 }
             }
-            CourseTb temp1=new CourseTb(); 
+            CourseTb temp1 = new CourseTb();
             foreach (CourseTb temp in mod.CourseTb)
             {
                 if (aa.Lname == temp.ID)
@@ -106,7 +106,7 @@ namespace Software.Controllers
             }
             GradesTb newSt = new GradesTb();
             newSt.CourseID = aa.Lname;
-            newSt.StudentID= aa.ID.ToString();
+            newSt.StudentID = aa.ID.ToString();
             newSt.GradeB = null;
             newSt.GradeA = null;
             mod.GradesTb.Add(newSt);
@@ -119,7 +119,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View(mod.CourseTb);
         }
@@ -128,7 +128,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             Session["User"] = couID.ID;
             return View();
@@ -138,78 +138,43 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             var stam = Session["User"];
 
-            CourseTb cou = new CourseTb();
+            CourseTb cou = new CourseTb(), course = new CourseTb();
+
             foreach (CourseTb sd in mod.CourseTb)
-            {
                 if (stam.Equals(sd.ID))
                 {
+                    course = sd;
                     cou = sd;
                 }
-            }
-
 
 
             if (temp.Name != null)
-            {
-                mod.CourseTb.Remove(cou);
                 cou.Name = temp.Name;
-                mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
-            }
-            else if (temp.Points != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (temp.Points != null)
                 cou.Points = temp.Points;
-                mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
-            }
-            else if (temp.ExamA != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (!temp.ExamA.Equals(null))
                 cou.ExamA = temp.ExamA;
-                mod.CourseTb.Add(cou);
-               // mod.SaveChanges();
-            }
-            else if (temp.ExamB != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (!temp.ExamB.Equals(null))
                 cou.ExamB = temp.ExamB;
-                mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
-            }
-            else if (temp.Lecturer != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (temp.Lecturer != null)
                 cou.Lecturer = temp.Lecturer;
-                mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
-            }
-            else if (temp.Time != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (temp.Time != null)
                 cou.Time = temp.Time;
-                mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
-            }
-            else if (temp.Day != null)
-            {
-                mod.CourseTb.Remove(cou);
+            if (temp.Day != null)
                 cou.Day = temp.Day;
-                mod.CourseTb.Add(cou);
-               // mod.SaveChanges();
-            }
-            else if (temp.Class != null)
+            if (temp.Class != null)
+                cou.Class = temp.Class;
+
+            if (!course.Equals(cou))
             {
                 mod.CourseTb.Remove(cou);
-                cou.Class = temp.Class;
                 mod.CourseTb.Add(cou);
-                //mod.SaveChanges();
+                mod.SaveChanges();
             }
-
 
             return View("Edit");
         }
@@ -218,7 +183,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View(mod.GradesTb);
         }
@@ -227,17 +192,47 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
-            return View("Three",mod.GradesTb);
+            return View("Three", mod.GradesTb);
         }
-        public ActionResult EditThree(GradesTb user)
+        public ActionResult Four(GradesTb user)
         {
             if (Session["myinfo"] == null)
             {
-                ViewBag.lol= "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
+            //GradesTb Gread = new GradesTb();
+            //foreach (GradesTb tempg in mod.GradesTb)
+            //    if (tempg.StudentID.Equals(user.StudentID))
+            //        if (tempg.CourseID.Equals(user.CourseID))
+            //            return View(tempg);
+            return View(user);
+        }
+        public ActionResult EditThree(GradesTb user)
+        {
+            //var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(user.CourseID));
+            //DateTime Adate = courseDetails.ExamA, Bdate = courseDetails.ExamB, datetoday = DateTime.Now;
+            //bool exA = true, exB = true;
+            bool exA = true, exB = true;
+            string datetoday = DateTime.Now.ToString("yyyy-MM-dd");
+            double Byear = 0, year = 0, Tyear = Char.GetNumericValue(datetoday[0]) * 1000 + Char.GetNumericValue(datetoday[1]) * 100 + Char.GetNumericValue(datetoday[2]) * 10 + Char.GetNumericValue(datetoday[3]);
+            double Bmonth = 0, month = 0, Tmonth = Char.GetNumericValue(datetoday[5]) * 10 + Char.GetNumericValue(datetoday[6]);
+            double Bday = 0, day = 0, Tday = Char.GetNumericValue(datetoday[8]) * 10 + Char.GetNumericValue(datetoday[9]);
+            foreach (CourseTb tempData in mod.CourseTb)
+                if (tempData.ID.Equals(user.CourseID))
+                {
+                    string Adate = tempData.ExamA, Bdate = tempData.ExamB;
+                    year = Char.GetNumericValue(Adate[0]) * 1000 + Char.GetNumericValue(Adate[1]) * 100 + Char.GetNumericValue(Adate[2]) * 10 + Char.GetNumericValue(Adate[3]);
+                    month = Char.GetNumericValue(Adate[5]) * 10 + Char.GetNumericValue(Adate[6]);
+                    day = Char.GetNumericValue(Adate[8]) * 10 + Char.GetNumericValue(Adate[9]);
+                    Byear = Char.GetNumericValue(Bdate[0]) * 1000 + Char.GetNumericValue(Bdate[1]) * 100 + Char.GetNumericValue(Bdate[2]) * 10 + Char.GetNumericValue(Bdate[3]);
+                    Bmonth = Char.GetNumericValue(Bdate[5]) * 10 + Char.GetNumericValue(Bdate[6]);
+                    Bday = Char.GetNumericValue(Bdate[8]) * 10 + Char.GetNumericValue(Bdate[9]);
+                    break;
+                }
+
             GradesTb Greaddddd = new GradesTb();
             if (user == null)
                 TempData["errormsg"] = "ERROR! Fill in again ";
@@ -248,26 +243,66 @@ namespace Software.Controllers
             if (user.GradeA != null)
                 if (!(user.GradeA <= 100 && user.GradeA >= 0))
                     TempData["errormsg"] = "Gread A, must be in range [0,100]";
+                else
+                {
+                    //if (DateTime.Compare(datetoday, Adate) > 0)
+                    //    exA = false;
+                    if (year < Tyear) exA = true;
+                    else if (year > Tyear) exA = false;
+                    else if (year == Tyear)
+                    {
+                        if (month < Tmonth) exA = true;
+                        else if (month > Tmonth) exA = true;
+                        else if (day < Tday) exA = true;
+                        else if (day > Tday) exA = false;
+                        else exA = true;
+                    }
+                    if (!exA) TempData["errormsg"] = "Exam A yet to come";
+                }
+
             if (user.GradeB != null)
                 if (!(user.GradeB <= 100 && user.GradeB >= 0))
                     TempData["errormsg"] = "Gread B, must be in range [0,100]";
+                else
+                {
+
+                    //if (DateTime.Compare(datetoday, Bdate) > 0)
+                    //    exB = false;
+                    if (Byear < Tyear) exB = true;
+                    else if (Byear > Tyear) exB = false;
+                    else if (Byear == Tyear)
+                    {
+                        if (Bmonth < Tmonth) exB = true;
+                        else if (Bmonth > Tmonth) exB = true;
+                        else if (Bday < Tday) exB = true;
+                        else if (Bday > Tday) exB = false;
+                        else exB = true;
+                    }
+                    if (!exB) TempData["errormsg"] = "Exam B yet to come";
+                }
+
+
+
             List<GradesTb> Gread = new List<GradesTb>();
-            foreach (GradesTb tempg in mod.GradesTb)
-                if (tempg.StudentID.Equals(user.StudentID))
-                    if (tempg.CourseID.Equals(user.CourseID))
-                    { Greaddddd = tempg; Gread.Add(tempg); Gread.Add(user); break; }
-            if (Greaddddd == null || Greaddddd == null || Greaddddd.CourseID == null || Greaddddd.StudentID == null)
-                TempData["errormsg"] = "Course/Student not found ";
-            else
-            {
-                mod.GradesTb.Remove(Greaddddd);
-                mod.GradesTb.Add(user);
-                //mod.SaveChanges();
-                TempData["confirmmsg"] = "Updated ";
-            }
+            if (exA)
+                if (exB)
+                {
+                    foreach (GradesTb tempg in mod.GradesTb)
+                        if (tempg.StudentID.Equals(user.StudentID))
+                            if (tempg.CourseID.Equals(user.CourseID))
+                            { Greaddddd = tempg; Gread.Add(tempg); Gread.Add(user); break; }
+                    if (Greaddddd == null || Greaddddd == null || Greaddddd.CourseID == null || Greaddddd.StudentID == null)
+                        TempData["errormsg"] = "Course/Student not found ";
+                    else
+                    {
+                        mod.GradesTb.Remove(Greaddddd);
+                        mod.GradesTb.Add(user);
+                        mod.SaveChanges();
+                        TempData["confirmmsg"] = "Updated";
+                    }
 
+                }
 
-            //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
             return View("Four");
         }
         public ActionResult Create()
@@ -275,7 +310,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             return View("CheckOne");
         }
@@ -284,30 +319,30 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             if (temp.ID == null)
             {
                 TempData["errormsg"] = "You must enter ID";
                 return View("CheckOne");
             }
-            foreach(CourseTb stam in mod.CourseTb)
+            foreach (CourseTb stam in mod.CourseTb)
             {
-                if(stam.ID==temp.ID)
+                if (stam.ID == temp.ID)
                 {
                     TempData["errormsg"] = "ID Exist";
                     return View("CheckOne");
                 }
             }
-            if(temp.Name==null)
+            if (temp.Name == null)
                 TempData["errormsg"] = "You must enter Name";
             else if (temp.Points == null)
                 TempData["errormsg"] = "You must enter Points";
             else if (temp.Time == null)
                 TempData["errormsg"] = "You must enter Time";
-            else if (temp.ExamA == null)
+            else if (temp.ExamA.Equals(null))
                 TempData["errormsg"] = "You must enter ExamA";
-            else if (temp.ExamB == null)
+            else if (temp.ExamB.Equals(null))
                 TempData["errormsg"] = "You must enter ExamB";
             else if (temp.Day == null)
                 TempData["errormsg"] = "You must enter Day";
@@ -317,7 +352,7 @@ namespace Software.Controllers
             {
                 mod.CourseTb.Add(temp);
                 mod.SaveChanges();
-                TempData["confirmmsg"] = "Updated ";
+                TempData["confirmMsg"] = "Updated ";
 
             }
 

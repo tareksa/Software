@@ -30,13 +30,16 @@ namespace Software.Controllers
         {
             List<GradesTb> Greads = new List<GradesTb>();
             List<CourseTb> CoursesLi = new List<CourseTb>();
-            chekSession(Session["myinfo"]);
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
 
             foreach (CourseTb tempData in mod.CourseTb)
                 if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
                 {
                     //get course details 
-                    //var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(tempData.CourseID));
                     CoursesLi.Add(tempData);
                 }
             return View(CoursesLi);
@@ -45,7 +48,16 @@ namespace Software.Controllers
         {
             List<User> StudentsIN = new List<User>();
             List<string> userid = new List<string>();
-            chekSession(Session["myinfo"]);
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
             string str = Session["myinfo"].ToString();
 
             //return a list of student's for every lecturer's courses
@@ -54,11 +66,8 @@ namespace Software.Controllers
                     userid.Add(tempg.StudentID);
 
             //return a list of student Data for every lecturer's courses
-            //foreach (User St in mod.User)
             foreach (string UID in userid)
-                //     if (UID.Equals(St.ID.ToString()))
                 StudentsIN.Add(mod.User.FirstOrDefault(x => x.ID.ToString().Equals(UID)));
-            //        StudentsIN.Add(tempData);
             return View(StudentsIN);
         }
         public ActionResult lecturCourses()
@@ -67,8 +76,12 @@ namespace Software.Controllers
             List<CourseTb> CoursesLi = new List<CourseTb>();
             List<User> StudentsIN = new List<User>();
             List<string> userid = new List<string>();
-            chekSession(Session["myinfo"]);
-            string str = Session["myinfo"].ToString();
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
+
             //return a list of lecturer courses
             foreach (CourseTb tempData in mod.CourseTb)
                 if (tempData.Lecturer.Equals(Session["myinfo"].ToString()))
@@ -82,7 +95,11 @@ namespace Software.Controllers
             List<GradesTb> Greads = new List<GradesTb>();
             List<CourseTb> CoursesLi = new List<CourseTb>();
 
-            chekSession(Session["myinfo"]);
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
 
             //return a list of lecturer courses
             foreach (CourseTb tempData in mod.CourseTb)
@@ -100,23 +117,30 @@ namespace Software.Controllers
 
         public ActionResult lecturerEdit(string StudentID, string CourseID)
         {
-            chekSession(Session["myinfo"]);
+
+            if (Session["myinfo"] == null)
+            {
+                ViewBag.lol = "You have to login First";
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
+            }
             GradesTb Gread = new GradesTb();
             foreach (GradesTb tempg in mod.GradesTb)
                 if (tempg.StudentID.Equals(StudentID))
                     if (tempg.CourseID.Equals(CourseID))
                         return View(tempg);
 
-            //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
             return View();
         }
         public ActionResult chkEdit(GradesTb user)
         {
+            //var courseDetails = mod.CourseTb.FirstOrDefault(x => x.ID.Equals(user.CourseID));
+            //DateTime Adate = courseDetails.ExamA, Bdate = courseDetails.ExamB,datetoday = DateTime.Now;
+            //bool exA = true, exB = true;
             bool exA = true, exB = true;
             string datetoday = DateTime.Now.ToString("yyyy-MM-dd");
-            double Byear=0, year=0, Tyear = Char.GetNumericValue(datetoday[0]) * 1000 + Char.GetNumericValue(datetoday[1]) * 100 + Char.GetNumericValue(datetoday[2]) * 10 + Char.GetNumericValue(datetoday[3]);
-            double Bmonth =0, month=0, Tmonth = Char.GetNumericValue(datetoday[5]) * 10 + Char.GetNumericValue(datetoday[6]);
-            double Bday =0, day=0, Tday = Char.GetNumericValue(datetoday[8]) * 10 + Char.GetNumericValue(datetoday[9]);
+            double Byear = 0, year = 0, Tyear = Char.GetNumericValue(datetoday[0]) * 1000 + Char.GetNumericValue(datetoday[1]) * 100 + Char.GetNumericValue(datetoday[2]) * 10 + Char.GetNumericValue(datetoday[3]);
+            double Bmonth = 0, month = 0, Tmonth = Char.GetNumericValue(datetoday[5]) * 10 + Char.GetNumericValue(datetoday[6]);
+            double Bday = 0, day = 0, Tday = Char.GetNumericValue(datetoday[8]) * 10 + Char.GetNumericValue(datetoday[9]);
             foreach (CourseTb tempData in mod.CourseTb)
                 if (tempData.ID.Equals(user.CourseID))
                 {
@@ -129,8 +153,8 @@ namespace Software.Controllers
                     Bday = Char.GetNumericValue(Bdate[8]) * 10 + Char.GetNumericValue(Bdate[9]);
                     break;
                 }
-            
-                    GradesTb Greaddddd = new GradesTb();
+
+            GradesTb Greaddddd = new GradesTb();
             if (user == null)
                 TempData["errormsg"] = "ERROR! Fill in again ";
             if (user.StudentID == null)
@@ -142,7 +166,9 @@ namespace Software.Controllers
                     TempData["errormsg"] = "Gread A, must be in range [0,100]";
                 else
                 {
-                    if (year < Tyear) exA=true;
+                    //if (DateTime.Compare(datetoday, Adate) > 0)
+                    //    exA = false;
+                    if (year < Tyear) exA = true;
                     else if (year > Tyear) exA = false;
                     else if (year == Tyear)
                     {
@@ -160,6 +186,8 @@ namespace Software.Controllers
                     TempData["errormsg"] = "Gread B, must be in range [0,100]";
                 else
                 {
+                    //if (DateTime.Compare(datetoday, Bdate) > 0)
+                    //    exB = false;
                     if (Byear < Tyear) exB = true;
                     else if (Byear > Tyear) exB = false;
                     else if (Byear == Tyear)
@@ -173,26 +201,25 @@ namespace Software.Controllers
                     if (!exB) TempData["errormsg"] = "Exam B yet to come";
                 }
             List<GradesTb> Gread = new List<GradesTb>();
-            if (exA )
-              if ( exB  )
-            {
-                foreach (GradesTb tempg in mod.GradesTb)
-                    if (tempg.StudentID.Equals(user.StudentID))
-                        if (tempg.CourseID.Equals(user.CourseID))
-                        { Greaddddd = tempg; Gread.Add(tempg); Gread.Add(user); break; }
-                if (Greaddddd == null || Greaddddd == null || Greaddddd.CourseID == null || Greaddddd.StudentID == null)
-                    TempData["errormsg"] = "Course/Student not found ";
-                else
+            if (exA)
+                if (exB)
                 {
-                    mod.GradesTb.Remove(Greaddddd);
-                    mod.GradesTb.Add(user);
-                    mod.SaveChanges();
-                    TempData["confirmmsg"] = "Updated ";
+                    foreach (GradesTb tempg in mod.GradesTb)
+                        if (tempg.StudentID.Equals(user.StudentID))
+                            if (tempg.CourseID.Equals(user.CourseID))
+                            { Greaddddd = tempg; Gread.Add(tempg); Gread.Add(user); break; }
+                    if (Greaddddd == null || Greaddddd == null || Greaddddd.CourseID == null || Greaddddd.StudentID == null)
+                        TempData["errormsg"] = "Course/Student not found ";
+                    else
+                    {
+                        mod.GradesTb.Remove(Greaddddd);
+                        mod.GradesTb.Add(user);
+                        mod.SaveChanges();
+                        TempData["confirmmsg"] = "Updated ";
+                    }
+
                 }
 
-            }
-
-            //return View(mod.GradesTb.FirstOrDefault(x => x.StudentID.Equals("1")));
             return View("lecturerEdit");
         }
 

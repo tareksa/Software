@@ -28,10 +28,9 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             string str = Session["myinfo"].ToString();
-            bool chek = false;
             foreach (GradesTb tempData in mod.GradesTb)
             {
 
@@ -42,7 +41,7 @@ namespace Software.Controllers
                     CoursesLi.Add(courseDetails);
                 }
             }
-                    
+
             return View("Schedule", CoursesLi);
         }
         public ActionResult ExamSchedule()
@@ -52,7 +51,7 @@ namespace Software.Controllers
             if (Session["myinfo"] == null)
             {
                 ViewBag.lol = "You have to login First";
-                return RedirectToAction("Login", "Home", ViewBag.lol);
+                return RedirectToAction("Login", "Home", new { msg = ViewBag.lol });
             }
             string str = Session["myinfo"].ToString();
             foreach (GradesTb tempData in mod.GradesTb)

@@ -2,48 +2,55 @@
 @{
     ViewBag.Title = "Home";
 }
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Man</title>
-    </head>
-    <body>
-        <p class="inset">An inset border.</p>
-        @using (Html.BeginForm("One", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <br /><br /><br />
-            <div>
-                <button type="submit">assign student to couse</button>
-            </div>
-            <br /><br />
+<head>
+    <style>
+        body {
+            background-image: url("../../images/50-Beautiful-and-Minimalist-Presentation-Backgrounds-052.jpg");
+            background-repeat: repeat;
+            background-color: #cccccc;
         }
-        @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Manage course</button>
-            </div>
-            <br /><br />
-        }
-        @using (Html.BeginForm("Three", "Manager", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Update grade</button>
-            </div>
-            <br /><br />
-        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Man</title>
+</head>
+<body>
+    <p class="inset">An inset border.</p>
+    @using (Html.BeginForm("One", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <br /><br /><br />
+        <div>
+            <button type="submit">assign student to couse</button>
+        </div>
+        <br /><br />
+    }
+    @using (Html.BeginForm("Two", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Manage course</button>
+        </div>
+        <br /><br />
+    }
+    @using (Html.BeginForm("Three", "Manager", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Update grade</button>
+        </div>
+        <br /><br />
+    }
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Logout</button>
-            </div>
-            <br /><br />
-        }
-    </body>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <button type="submit">Logout</button>
+        </div>
+        <br /><br />
+    }
+</body>
 
 </html>

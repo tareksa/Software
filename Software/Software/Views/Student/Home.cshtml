@@ -4,19 +4,19 @@
 }*@
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Stu</title>
-    </head>
+<head>
+    <style>
+        body {
+            background-image: url("../../images/50-Beautiful-and-Minimalist-Presentation-Backgrounds-052.jpg");
+            background-repeat: repeat;
+            background-color: #cccccc;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Stu</title>
+</head>
     <body>
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div>
-                <button type="submit">Logout</button>
-            </div>
-        }
         @using (Html.BeginForm("CourseSchedule", "Student", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -29,6 +29,13 @@
             @Html.AntiForgeryToken()
             <div>
                 <button type="submit">Exam Schedule</button>
+            </div>
+        }
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <button type="submit">Logout</button>
             </div>
         }
     </body>

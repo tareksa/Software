@@ -8,23 +8,38 @@
 
 <html>
 <head>
-
+    <style>
+        div {
+            width: 320px;
+            padding: 10px;
+            border: 5px solid gray;
+            margin: 0;
+           /* background: url("../../images/abstract-technology-particle-background_52683-25766.jpg");*/
+        }
+        h1{
+            color:bisque;
+        }
+        body {
+            background-image: url("../../images/50-Beautiful-and-Minimalist-Presentation-Backgrounds-052.jpg");
+            background-repeat:  repeat;
+            background-color: #cccccc;
+        }
+    </style>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 </head>
 <body>
-    <p class="inset">An inset border.</p>
     @using (Html.BeginForm("valedate", "Home", FormMethod.Post))
     {
-        @Html.AntiForgeryToken()
-        <center>
-            <br /><br /><br /><br /><br /><br />
-            <h1>Login Page</h1>
-            <div>
+            @Html.AntiForgeryToken()
+            <center>
+                <br /><br /><br /><br /><br /><br />
+        <div>
+                <h1 >Login Page</h1>
 
                 @if (TempData["ErrorMSG"] != null)
                 {
-                    <label style="color:maroon;"> @TempData["ErrorMSG"] </label>
+                    <label style="color:red;"> @TempData["ErrorMSG"] </label>
                     <br /><br />
                 }
 
@@ -33,8 +48,8 @@
                 @Html.PasswordFor(x => x.Password, new { @placeholder = "Password" })
                 <br /> <br />
                 <button type="submit">Login</button>
-            </div>
-        </center>
-    }
-</body>
+        </div>
+            </center>
+            }
+    </body>
 </html>

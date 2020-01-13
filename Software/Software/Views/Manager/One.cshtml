@@ -21,7 +21,7 @@
     @using (Html.BeginForm("CheckOne", "Manager", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        
+
         if (TempData["temp1"] != null)
         {
             <label style="color:maroon;"> @TempData["temp1"] </label>

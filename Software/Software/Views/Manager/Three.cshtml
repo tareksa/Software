@@ -26,9 +26,6 @@
         {
             //@Html.HiddenFor(model=>item)
             <tr>
-                @*<td>
-                        <a href="/Lecturer/lecturerEdit?StudentGrades=@item">Edit</a>
-                    </td>*@
                 <td> @Html.ActionLink("Edit", "EditThree", new { StudentID = item.StudentID, CourseID = item.CourseID })</td>
                 <td>@Html.Encode(item.StudentID)</td>
                 <td>@Html.Encode(item.CourseID)</td>
